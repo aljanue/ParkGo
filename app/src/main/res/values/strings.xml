@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Park&amp;Go</string>
+    <string name="sitio_libre">Sitio Libre</string>
+    <string name="sitio_ocupado">Sitio Ocupado</string>
 </resources>
