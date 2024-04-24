@@ -36,7 +36,7 @@
             android:paddingBottom="0dp">
 
             <ImageView
-                android:id="@+id/imageView3"
+                android:id="@+id/car"
                 android:layout_width="match_parent"
                 android:layout_height="177dp"
                 android:layout_marginStart="25dp"
