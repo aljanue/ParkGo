@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "764063475615",
+    "project_id": "parkgo-c57ec",
+    "storage_bucket": "parkgo-c57ec.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:764063475615:android:a3e481a36e30bae1a3ffaa",
+        "android_client_info": {
+          "package_name": "xabier.alberto.uv.es.parkgo"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC8rFxGeukeCKN7EIZ58V27T15dDAvxINY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
