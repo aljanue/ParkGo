@@ -5,7 +5,8 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#CBCBFF">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -13,6 +14,15 @@
         android:layout_height="?attr/actionBarSize"
         android:background="#FFFFFF"
         tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Busca tu destino"
+        android:textStyle="bold"
+        android:textSize="24sp"
+        android:layout_margin="10dp" />
 
     <androidx.appcompat.widget.SearchView
         android:id="@+id/search"
@@ -22,6 +32,6 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="0dp" />
+        android:layout_height="match_parent" />
 
 </LinearLayout>

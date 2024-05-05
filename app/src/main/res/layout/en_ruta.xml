@@ -5,42 +5,34 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#CBCBFF">
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="#FFFFFF"
-        tools:ignore="MissingConstraints" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:padding="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="¿Has aparcado?"
+            android:textSize="24sp"
+            android:layout_marginBottom="16dp" />
 
         <Button
             android:id="@+id/aparcar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="#5959E9"
-            android:insetBottom="50dp"
-            android:text="@string/sitio_libre"
+            android:text="Confirmar"
             android:textAlignment="center"
-            android:textSize="34sp"
-            android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/ocupado"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#5959E9"
-            android:insetTop="50dp"
-            android:text="@string/sitio_ocupado"
-            android:textAlignment="center"
-            android:textSize="34sp"
+            android:textSize="20sp"
             android:textStyle="bold" />
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

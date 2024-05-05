@@ -4,12 +4,14 @@ import android.os.AsyncTask
 import android.util.Log
 import org.json.JSONObject
 import java.net.URL
+import java.net.URLEncoder
+import java.nio.charset.StandardCharsets
 
 class GeocodingTask(private val onLocationFetched: (Pair<Double, Double>?) -> Unit) : AsyncTask<String, Void, Pair<Double, Double>?>() {
     override fun doInBackground(vararg params: String): Pair<Double, Double>? {
-        val query = params[0]
+        val query = URLEncoder.encode(params[0], StandardCharsets.UTF_8.toString())
         Log.d("GeocodingTask", "Buscando ubicación para $query")
-        val apiKey = "ded8e751bb08410fbbcc5c7ae242ada1" // Your OpenCage API key
+        val apiKey = "245670a9ef2d4664a741a8e170e6aaaf" // Your OpenCage API key
         val response = URL("https://api.opencagedata.com/geocode/v1/json?q=$query&key=$apiKey").readText()
         Log.d("GeocodingTask", "Respuesta: $response")
         val jsonObject = JSONObject(response)

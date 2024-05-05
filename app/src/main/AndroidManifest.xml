@@ -5,6 +5,9 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -26,6 +29,8 @@
         </activity>
         <activity android:name=".PeatonHome" />
         <activity android:name=".CarHome" />
+        <activity android:name=".EnRuta" />
+        <receiver android:name=".ParkActionReceiver" />
     </application>
 
 </manifest>

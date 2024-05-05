@@ -18,7 +18,7 @@ import kotlin.math.*
 
 class CarHome : AppCompatActivity() {
 
-    private lateinit var database: DatabaseReference
+    private val database: DatabaseReference = Singletons.database
     private lateinit var adapter: LocationDataAdapter
     private lateinit var searchedLocation: LocationData
 
@@ -28,9 +28,6 @@ class CarHome : AppCompatActivity() {
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
 
-        database =
-            FirebaseDatabase.getInstance("https://parkgo-c57ec-default-rtdb.europe-west1.firebasedatabase.app")
-                .getReference("ParkGo")
         adapter = LocationDataAdapter(emptyList(), LocationData())
 
         val recyclerView: RecyclerView = findViewById(R.id.recycler_view)
@@ -38,7 +35,7 @@ class CarHome : AppCompatActivity() {
         recyclerView.adapter = adapter
 
         val searchView: SearchView = findViewById(R.id.search)
-        searchView.setIconifiedByDefault(false)
+        searchView.setIconifiedByDefault(true)
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
@@ -65,6 +62,7 @@ class CarHome : AppCompatActivity() {
                                         Log.d("coordenadas", "Distancia: $distance")
                                         if (distance <= 3) {
                                             locationData.distance = distance // Asegúrate de tener un campo de distancia en tu clase LocationData
+                                            Log.d("coordenadas", "Añadiendo elemento a la lista $locationData.direccion")
                                             locationDataList.add(locationData)
                                         }
                                     }
