@@ -11,6 +11,11 @@ class GeocodingTask(private val onLocationFetched: (Pair<Double, Double>?) -> Un
     override fun doInBackground(vararg params: String): Pair<Double, Double>? {
         val query = URLEncoder.encode(params[0], StandardCharsets.UTF_8.toString())
         Log.d("GeocodingTask", "Buscando ubicación para $query")
+        // Verifica si la consulta es demasiado corta
+        if (query.length < 6) {
+            Log.d("GeocodingTask", "La consulta es demasiado corta")
+            return null
+        }
         val apiKey = "245670a9ef2d4664a741a8e170e6aaaf" // Your OpenCage API key
         val response = URL("https://api.opencagedata.com/geocode/v1/json?q=$query&key=$apiKey").readText()
         Log.d("GeocodingTask", "Respuesta: $response")
