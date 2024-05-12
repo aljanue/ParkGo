@@ -72,7 +72,7 @@ class LocationDataAdapter(private var locations: List<LocationData>, private val
                 val builder = NotificationCompat.Builder(it.context, "ParkGoChannel")
                     .setSmallIcon(R.drawable.logo)
                     .setContentTitle("Park&Go")
-                    .setContentText("Don't forget to mark 'Park' when you arrive!")
+                    .setContentText("¡No olvides marcar que has aparcado al llegar!")
                     .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                     .addAction(R.drawable.logo, "Aparcar", parkPendingIntent)
 

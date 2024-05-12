@@ -20,7 +20,6 @@ class CarHome : AppCompatActivity() {
 
     private val database: DatabaseReference = Singletons.database
     private lateinit var adapter: LocationDataAdapter
-    private lateinit var searchedLocation: LocationData
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -90,7 +89,7 @@ class CarHome : AppCompatActivity() {
         })
     }
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.person_menu, menu)
+        menuInflater.inflate(R.menu.car_menu, menu)
         return super.onCreateOptionsMenu(menu)
     }
 
