@@ -43,15 +43,12 @@ class LocationDataAdapter(private var locations: List<LocationData>, private val
         val location = locations[position]
         holder.direccion.text = location.direccion
 
-        // Usa la propiedad distance de locationData que ya calculaste
         val distance = location.distance
 
-        // Formatea la distancia con dos decimales
         val formattedDistance = String.format("%.2f", distance)
 
         holder.distancia.text = "${formattedDistance} km"
 
-        // Agrega un onClickListener al contenedor de la vista
         holder.itemView.setOnClickListener {
             // Crea y envía la notificación antes de abrir Google Maps
             Handler(Looper.getMainLooper()).postDelayed({
@@ -77,7 +74,7 @@ class LocationDataAdapter(private var locations: List<LocationData>, private val
                     .setContentTitle("Park&Go")
                     .setContentText("Don't forget to mark 'Park' when you arrive!")
                     .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                    .addAction(R.drawable.logo, "Aparcar", parkPendingIntent) // Agrega el botón "Aparcar"
+                    .addAction(R.drawable.logo, "Aparcar", parkPendingIntent)
 
                 with(NotificationManagerCompat.from(it.context)) {
                     if (ActivityCompat.checkSelfPermission(
@@ -94,24 +91,20 @@ class LocationDataAdapter(private var locations: List<LocationData>, private val
                         notify(100, builder.build())
                     }
                 }
-            }, 5000) // Retrasa la ejecución en 5000 milisegundos (5 segundos)
+            }, 5000)
 
-            // Luego abre Google Maps
             val gmmIntentUri = Uri.parse("geo:0,0?q=${Uri.encode(location.direccion)}")
             val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
             mapIntent.setPackage("com.google.android.apps.maps")
 
-            // Añade la bandera FLAG_ACTIVITY_NEW_TASK
             mapIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
 
-            // Lanza el Intent para Google Maps
             it.context.startActivity(mapIntent)
 
-            // Crea un nuevo Handler y utiliza su método postDelayed para retrasar la ejecución del código que inicia la actividad EnRuta
             Handler(Looper.getMainLooper()).postDelayed({
                 val enRutaIntent = Intent(it.context, EnRuta::class.java)
                 it.context.startActivity(enRutaIntent)
-            }, 3000) // Retrasa la ejecución en 1000 milisegundos (1 segundo)
+            }, 3000)
         }
     }
 

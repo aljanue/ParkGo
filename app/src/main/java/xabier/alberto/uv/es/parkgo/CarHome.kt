@@ -55,27 +55,26 @@ class CarHome : AppCompatActivity() {
                                             "coordenadas",
                                             "Coordenadas de la base de datos: ${locationData.coordenadas}"
                                         )
-                                        // Calcula la distancia entre la ubicación buscada y la ubicación del elemento
                                         val distance =
                                             calculateDistance(lat, lon, locationData.coordenadas)
-                                        // Filtra los elementos que están a una distancia máxima de 3 km
+                                        // Muestra los elementos a una distancia máxima de 3 km
                                         Log.d("coordenadas", "Distancia: $distance")
                                         if (distance <= 3) {
-                                            locationData.distance = distance // Asegúrate de tener un campo de distancia en tu clase LocationData
+                                            locationData.distance = distance
                                             Log.d("coordenadas", "Añadiendo elemento a la lista $locationData.direccion")
                                             locationDataList.add(locationData)
                                         }
                                     }
                                 }
-                                // Ordena los elementos de más cerca a más lejos de la ubicación buscada
+
                                 locationDataList.sortBy { it.distance }
-                                // Actualiza el RecyclerView con los elementos filtrados y ordenados
+
                                 adapter.updateData(locationDataList)
                                 adapter.notifyDataSetChanged()
                             }
 
                             override fun onCancelled(databaseError: DatabaseError) {
-                                // Aquí puedes manejar el error
+                                // No manejamos errores, pero sin esta función no compila el programa
                             }
                         })
                     }else{
@@ -86,7 +85,6 @@ class CarHome : AppCompatActivity() {
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                // Este método se llama cada vez que el texto en la barra de búsqueda cambia
                 return true
             }
         })

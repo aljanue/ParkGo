@@ -29,7 +29,6 @@ import java.util.Locale
 class PeatonHome : AppCompatActivity() {
     private val database: DatabaseReference = Singletons.database
     private val fusedLocationClient: FusedLocationProviderClient = Singletons.fusedLocationProviderClient
-    private val last_location: Location? = null;
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.peaton_home)
@@ -111,7 +110,7 @@ class PeatonHome : AppCompatActivity() {
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
-                // Aquí puedes manejar el error
+                // No manejamos errores, pero sin esta función no compila el programa
             }
         })
     }
@@ -123,14 +122,11 @@ class PeatonHome : AppCompatActivity() {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 val locationData = dataSnapshot.getValue(LocationData::class.java)
                 if (locationData != null) {
-                    // La ubicación existe, resta 1 a plazas
                     val newPlazas = (locationData.plazas ?: 0) - 1
                     if (newPlazas <= 0) {
-                        // Si plazas es 0 o menos, borra la ubicación
                         locationRef.removeValue()
                         Toast.makeText(applicationContext, "Ubicación eliminada de la base de datos", Toast.LENGTH_SHORT).show()
                     } else {
-                        // Si no, actualiza el valor de plazas
                         locationRef.child("plazas").setValue(newPlazas)
                         Toast.makeText(applicationContext, "Ubicación actualizada en la base de datos", Toast.LENGTH_SHORT).show()
                     }
@@ -138,7 +134,7 @@ class PeatonHome : AppCompatActivity() {
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
-                // Aquí puedes manejar el error
+                // No manejamos errores, pero sin esta función no compila el programa
             }
         })
     }
@@ -147,7 +143,7 @@ class PeatonHome : AppCompatActivity() {
         val addresses = geocoder.getFromLocation(latitude, longitude, 1)
         if (addresses != null && addresses.isNotEmpty()) {
             val address = addresses[0]
-            return address.getAddressLine(0) // Returns the full address
+            return address.getAddressLine(0)
         } else {
             return "Address not found"
         }

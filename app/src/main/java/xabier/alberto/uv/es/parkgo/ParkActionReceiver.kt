@@ -32,9 +32,7 @@ class ParkActionReceiver : BroadcastReceiver() {
             cancel(100)
         }
 
-        // Inicia MainActivity
         val mainActivityIntent = Intent(context, MainActivity::class.java).apply {
-            // Añade las banderas FLAG_ACTIVITY_NEW_TASK, FLAG_ACTIVITY_CLEAR_TASK y FLAG_ACTIVITY_BROUGHT_TO_FRONT
             addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT)
         }
         context.startActivity(mainActivityIntent)
@@ -72,14 +70,11 @@ class ParkActionReceiver : BroadcastReceiver() {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 val locationData = dataSnapshot.getValue(LocationData::class.java)
                 if (locationData != null) {
-                    // La ubicación existe, resta 1 a plazas
                     val newPlazas = (locationData.plazas ?: 0) - 1
                     if (newPlazas <= 0) {
-                        // Si plazas es 0 o menos, borra la ubicación
                         locationRef.removeValue()
                         Toast.makeText(context, "Lugar marcado como OCUPADO", Toast.LENGTH_SHORT).show()
                     } else {
-                        // Si no, actualiza el valor de plazas
                         locationRef.child("plazas").setValue(newPlazas)
                         Toast.makeText(context, "Lugar marcado como OCUPADO", Toast.LENGTH_SHORT).show()
                     }
@@ -87,7 +82,7 @@ class ParkActionReceiver : BroadcastReceiver() {
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
-                // Aquí puedes manejar el error
+                // No manejamos errores, pero sin esta función no compila el programa
             }
         })
     }

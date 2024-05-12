@@ -85,14 +85,11 @@ class EnRuta : AppCompatActivity() {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 val locationData = dataSnapshot.getValue(LocationData::class.java)
                 if (locationData != null) {
-                    // La ubicación existe, resta 1 a plazas
                     val newPlazas = (locationData.plazas ?: 0) - 1
                     if (newPlazas <= 0) {
-                        // Si plazas es 0 o menos, borra la ubicación
                         locationRef.removeValue()
                         Toast.makeText(applicationContext, "Lugar marcado como OCUPADO", Toast.LENGTH_SHORT).show()
                     } else {
-                        // Si no, actualiza el valor de plazas
                         locationRef.child("plazas").setValue(newPlazas)
                         Toast.makeText(applicationContext, "Lugar marcado como OCUPADO", Toast.LENGTH_SHORT).show()
                     }
@@ -100,7 +97,7 @@ class EnRuta : AppCompatActivity() {
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
-                // Aquí puedes manejar el error
+                // No manejamos errores, pero sin esta función no compila el programa
             }
         })
     }
@@ -127,7 +124,8 @@ class EnRuta : AppCompatActivity() {
             .setContentTitle("Park&Go")
             .setContentText("Don't forget to mark 'Park' when you arrive!")
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-            .addAction(R.drawable.logo, "Aparcar", parkPendingIntent) // Agrega el botón "Aparcar"
+            .addAction(R.drawable.logo, "Aparcar", parkPendingIntent)
+            .addAction(R.drawable.logo, "Aparcar", parkPendingIntent)
 
         with(NotificationManagerCompat.from(this)) {
             if (ActivityCompat.checkSelfPermission(

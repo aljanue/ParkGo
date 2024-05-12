@@ -16,7 +16,7 @@ class GeocodingTask(private val onLocationFetched: (Pair<Double, Double>?) -> Un
             Log.d("GeocodingTask", "La consulta es demasiado corta")
             return null
         }
-        val apiKey = "245670a9ef2d4664a741a8e170e6aaaf" // Your OpenCage API key
+        val apiKey = "245670a9ef2d4664a741a8e170e6aaaf"
         val response = URL("https://api.opencagedata.com/geocode/v1/json?q=$query&key=$apiKey").readText()
         Log.d("GeocodingTask", "Respuesta: $response")
         val jsonObject = JSONObject(response)

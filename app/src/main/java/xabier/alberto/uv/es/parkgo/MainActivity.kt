@@ -11,7 +11,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        // Inicializa los objetos en Singletons
         Singletons.fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
         Singletons.database = FirebaseDatabase.getInstance("https://parkgo-c57ec-default-rtdb.europe-west1.firebasedatabase.app").getReference("ParkGo")
 
